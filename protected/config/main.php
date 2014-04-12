@@ -12,8 +12,8 @@ Yii::setPathOfAlias('bootstrap', dirname(__DIR__).'/extensions/bootstrap');
 
 $config = array(
 	'basePath'=>dirname(__DIR__),
-	'name'=>'My Web Application',
-    'theme' => 'brown',
+	'name'=>'水文仪器',
+    'theme' => 'qudao',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
