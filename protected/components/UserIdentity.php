@@ -9,29 +9,17 @@ class UserIdentity extends CUserIdentity
 {
 
     /**
-     * @var User
-     */
-    private $_user=null;
-
-    /**
      * @return string
      */
     public function getId(){
-        return $this->_user ? $this->_user->id : '';
+        return $this->username;
     }
 
     /**
      * @return string
      */
     public function getName(){
-        return $this->_user ? $this->_user->getDisplayName() : '';
-    }
-
-    /**
-     * @return User
-     */
-    public function getUser(){
-        return $this->_user;
+        return $this->username;
     }
 
     /**
@@ -44,26 +32,29 @@ class UserIdentity extends CUserIdentity
      */
     public function authenticate()
     {
-        $user = null;
-        if ($this->username) {
-            /** @var User $user */
-            $user = User::model()->findByAttributes(array('login_name' => $this->username));
-        }
-        if (!$user) {
-            $this->errorCode = self::ERROR_USERNAME_INVALID;
-            $this->errorMessage = Yii::t('user', 'Login name is invalid or does not exist.');
-            return false;
-        }
-        if (!$user->validatePassword($this->password)) {
-            $this->errorCode = self::ERROR_PASSWORD_INVALID;
-            $this->errorMessage = Yii::t('user', 'Login name and password don\'t match.');
-            return false;
+        /** @var ConfigManager $config */
+        $config = Yii::app()->config;
+        if ($this->username == $config->adminId) {
+            $isAdmin = $config->adminPassword === self::encryptPassword($this->password, $config->adminSalt);
+            if ($isAdmin) {
+                $this->setState('role', 'admin');
+                $this->errorCode = self::ERROR_NONE;
+                return true;
+            }
         }
 
-        $this->errorCode = self::ERROR_NONE;
-        $this->_user = $user;
-        $this->setState('role', $user->role);
-        $this->setState('lastLoginTime', $user->last_login_time);
-        return true;
+        $this->errorCode = self::ERROR_PASSWORD_INVALID;
+        $this->errorMessage = Yii::t('user', 'Login name and password don\'t match.');
+        return false;
     }
+
+    /**
+     * @param $password
+     * @param $salt
+     * @return string
+     */
+    public static function encryptPassword($password, $salt) {
+        return md5($salt. md5($password));
+    }
+
 }

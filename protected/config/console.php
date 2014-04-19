@@ -2,6 +2,12 @@
 
 // This is the configuration for yiic console application.
 // Any writable CConsoleApplication properties can be configured here.
+
+date_default_timezone_set('Asia/Shanghai');
+
+Yii::setPathOfAlias('bootstrap', dirname(__DIR__).'/extensions/bootstrap');
+
+
 $config = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Console Application',
@@ -9,7 +15,16 @@ $config = array(
 	// preloading 'log' component
 	'preload'=>array('log'),
 
-	// application components
+    // autoloading model and component classes
+    'import'=>array(
+        'application.models.*',
+        'application.components.*',
+        'bootstrap.widgets.*',
+        'application.utils.*',
+    ),
+
+
+    // application components
 	'components'=>array(
 		/*'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',

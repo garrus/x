@@ -59,8 +59,14 @@ $config = array(
             'class' => 'ApiHelper',
         ),
 
+        'config' => array(
+            'class' => 'ConfigManager',
+            'tableName' => 'config',
+        ),
+
 		'user'=>array(
             'class' => 'WebUser',
+            'loginUrl' => false,
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),

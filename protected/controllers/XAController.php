@@ -33,17 +33,54 @@ class XAController extends Controller{
     public function accessRules(){
         return array(
             array('allow',
-                //'expression' => 'Yii::app()->user->isAdmin',
-                //'actions' => array()
+                'actions' => array('login'),
+                'users' => array('?')
             ),
-            //array('deny')
+            array('allow',
+                'expression' => 'Yii::app()->user->isAdmin',
+                'actions' => array()
+            ),
+
+            array('deny')
         );
     }
 
     public function init(){
         Yii::app()->theme = 'bootstrap';
+        Yii::app()->user->loginUrl = array('xa/login');
         parent::init();
     }
+
+    /**
+     * Displays the login page
+     */
+    public function actionLogin()
+    {
+        $this->layout = '//layouts/login';
+
+        $model=new LoginForm;
+
+        // if it is ajax validation request
+        if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+        {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+
+        // collect user input data
+        if(isset($_POST['LoginForm']))
+        {
+            $model->attributes=$_POST['LoginForm'];
+            // validate user input and redirect to the previous page if valid
+            if ($model->validate() && $model->login()) {
+                $this->redirect(array('xa/index'));
+            }
+
+        }
+        // display the login form
+        $this->render('login',array('model'=>$model));
+    }
+
 
     public function actionIndex(){
 

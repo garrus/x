@@ -1,25 +1,39 @@
-<?php $this->beginContent('/layouts/main'); ?>
-<div class="span-20" style="margin-right:0px;">
-    <div id="content">
-        <?php echo $content; ?>
-    </div><!-- content -->
-</div>
+<?php
+/**
+ * Created by PhpStorm.
+ * User: user
+ * Date: 14-4-12
+ * Time: 下午9:58
+ * @var string $content
+ * @var Controller $this
+ */
+$this->beginContent('//layouts/main');
+?>
+    <div class="span-18" style="margin-top: 10px;">
 
-<div style="display:none;" class="span-6 last">
+        <?php if (!empty($this->breadcrumbs)) {
+            $this->widget('zii.widgets.CBreadcrumbs', array(
+                'links' => $this->breadcrumbs,
+            ));
+        }?>
 
-    <div id="sidebar">
-        <?php
+        <?php echo $content;?>
+    </div>
+
+    <div class="span-6 clearfix">
+
+        <?php $this->beginWidget('zii.widgets.CPortlet', array(
+            'title' => '在线客服',
+        ));
+        $this->widget('application.widgets.ContactUs.ContactUsWidget');
+        $this->endWidget();
+
         $this->beginWidget('zii.widgets.CPortlet', array(
-            'title' => 'Operation',
+            'title' => '产品列表',
         ));
-
-        $this->widget('zii.widgets.CMenu', array(
-            'items'=>$this->menu,
-            'htmlOptions'=>array('class'=>'operations'),
-        ));
+        $this->widget('application.widgets.ProdList.ProdListWidget');
         $this->endWidget();
         ?>
-    </div><!-- sidebar -->
+    </div>
 
-</div>
-<?php $this->endContent('/layouts/main'); ?>
+<?php $this->endContent();

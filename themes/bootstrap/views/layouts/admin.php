@@ -37,7 +37,6 @@ $themeBaseUrl = Yii::app()->theme->baseUrl;
                     <?php $this->widget('bootstrap.widgets.TbMenu', array(
                         'items' => array(
                             array('label' => Yii::t('admin', 'Home'), 'url' => array('xa/index')),
-                            array('label' => Yii::t('admin', 'Users'), 'url' => array('xa/usrIndex'), 'active' => strpos($this->action->id, 'usr') === 0),
                             array('label' => Yii::t('admin', 'Production'), 'url' => array('xa/prodIndex'), 'active' => strpos($this->action->id, 'prod') === 0),
                             array('label' => Yii::t('admin', 'Back to Site'), 'url' => array('site/index')),
                             array('label' => Yii::t('admin', 'Logout'), 'url' => array('site/logout')),
@@ -68,7 +67,7 @@ $themeBaseUrl = Yii::app()->theme->baseUrl;
         </div>
 
         <hr>
-        <div class="footer">
+        <div class="text-center footer">
             Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
             All Rights Reserved.<br/>
             <?php echo Yii::powered(); ?>
