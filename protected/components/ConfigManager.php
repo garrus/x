@@ -78,7 +78,67 @@ class ConfigManager extends CApplicationComponent{
             }
             return $ret;
         }
+    }
 
+    /**
+     * @param bool $excludeFixedItems
+     * @return array
+     */
+    public function loadAll($excludeFixedItems=false){
+
+        $all = Yii::app()->db->createCommand()
+            ->select('*')
+            ->from($this->tableName)
+            ->queryAll(true);
+
+        foreach ($all as $row) {
+            if (!$this->_config->contains($row['name'])) {
+                $this->_config->add($row['name'], $row['value']);
+            }
+        }
+
+        $items = $this->_config->toArray();
+        if ($excludeFixedItems) {
+            foreach ($this->getFixedConfigItems() as $key) {
+                unset($items[$key]);
+            }
+        }
+        return $items;
+    }
+
+    public function getFixedConfigItems(){
+        return array('adminId', 'adminSalt');
+    }
+
+    /**
+     * @param array $config
+     */
+    public function saveConfig(array $config){
+
+        foreach ($this->getFixedConfigItems() as $key) {
+            unset($config[$key]);
+        }
+
+        if (isset($config['adminPassword'])) {
+            if (empty($config['adminPassword'])) {
+                unset($config['adminPassword']);
+            } else {
+                $config['adminSalt'] = md5(mt_rand(1000000, 9999999). md5(mt_rand(1000000, 9999999)));
+                $config['adminPassword'] = UserIdentity::encryptPassword($config['adminPassword'], $config['adminSalt']);
+            }
+        }
+
+        foreach ($config as $key => $value) {
+            $this->setItem($key, $value);
+        }
+        $this->flush();
+    }
+
+    public function getLabels(){
+        return array(
+            'adminPassword' => '管理员密码',
+            'contactQQCode' => '客服QQ代码',
+        );
     }
 
 

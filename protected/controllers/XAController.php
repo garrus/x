@@ -184,6 +184,20 @@ class XAController extends Controller{
             throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
     }
 
+    public function actionConfig(){
+
+        /** @var ConfigManager $configManager */
+        $configManager = Yii::app()->config;
+        if (Yii::app()->request->isPostRequest) {
+            $configManager->saveConfig($_POST);
+        }
+        $items = $configManager->loadAll(true);
+        $this->render('config', array(
+            'items' => $items,
+            'labels' => $configManager->getLabels(),
+        ));
+    }
+
 
     /**
      * @param $id

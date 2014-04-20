@@ -16,6 +16,7 @@ class m140419_052600_add_table_config extends CDbMigration
             'adminId' => 'admin',
             'adminSalt' => $salt,
             'adminPassword' => UserIdentity::encryptPassword($adminPassword, $salt),
+            'contactQQCode' => '',
         );
 
         foreach ($initConfig as $name => $value) {

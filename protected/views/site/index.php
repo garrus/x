@@ -11,7 +11,6 @@ $this->pageTitle=Yii::app()->name;
             <div class="inner">
                 <h1>The jQuery slider that just slides.</h1>
                 <p>No fancy effects or unnecessary markup, and it’s less than 3kb.</p>
-
             </div>
         </li>
 
@@ -19,7 +18,6 @@ $this->pageTitle=Yii::app()->name;
             <div class="inner">
                 <h1>Fluid, flexible, fantastically minimal.</h1>
                 <p>Use any HTML in your slides, extend with CSS. You have full control.</p>
-
             </div>
         </li>
 
@@ -35,7 +33,6 @@ $this->pageTitle=Yii::app()->name;
             <div class="inner">
                 <h1>Uh, that’s about it.</h1>
                 <p>I just wanted to show you another slide.</p>
-
             </div>
         </li>
     </ul>

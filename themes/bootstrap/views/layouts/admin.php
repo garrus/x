@@ -35,11 +35,11 @@ $themeBaseUrl = Yii::app()->theme->baseUrl;
                 <div class="nav-collapse collapse">
                     <?php $this->widget('bootstrap.widgets.TbMenu', array(
                         'items' => array(
-                            array('label' => '管理面板', 'url' => array('xa/index')),
+                            array('label' => '后台主页', 'url' => array('xa/index')),
                             array('label' => '产品管理', 'url' => array('xa/prodIndex'), 'active' => strpos($this->action->id, 'prod') === 0),
-                            array('label' => '配置管理', 'url' => array('xa/configIndex'), 'active' => strpos($this->action->id, 'config') === 0),
+                            array('label' => '配置管理', 'url' => array('xa/config'), 'active' => strpos($this->action->id, 'config') === 0),
                             array('label' => '回到前台', 'url' => array('site/index')),
-                            array('label' => '安全登出', 'url' => array('site/logout')),
+                            array('label' => '注销登录', 'url' => array('site/logout')),
                         )
                     ));?>
                 </div><!--/.nav-collapse -->
