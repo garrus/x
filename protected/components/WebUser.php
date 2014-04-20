@@ -36,6 +36,31 @@ class WebUser extends CWebUser{
         return parent::getReturnUrl($defaultUrl);
     }
 
+    public function getVisitorCity(){
+
+        $cookies = Yii::app()->request->cookies;
+        if ($cookies->contains('city')) {
+            return $cookies['city'];
+        }
+
+        $ip = Yii::app()->request->getUserHostAddress();
+        //$ip = '114.98.65.196';
+        $ret = @file_get_contents('http://ip.taobao.com/service/getIpInfo.php?ip='. $ip);
+
+        if ($ret) {
+            $info = json_decode($ret);
+            if ($info->code != 1) {
+                $city = $info->data->region. $info->data->city;
+
+                $cookie = new CHttpCookie('city', $city, array('expire' => time() + 86400));
+                $cookies->add('city', $cookie);
+                return $city;
+            }
+        }
+
+        return '未知地区';
+    }
+
     public function getDashboardUrl(){
         if (!$this->isGuest) {
             switch ($this->getstate('role')) {

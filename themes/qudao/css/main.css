@@ -97,10 +97,12 @@ h1,h2,h3,h4,h5 {
 
 a {
     color: rgb(99, 153, 205);
+    text-decoration: none;
 }
 a:hover,a:active {
     background-color: rgb(166, 113, 37);
     color: rgb(255, 197, 113);
+    text-decoration: underline;
 }
 
 

@@ -13,8 +13,9 @@ $this->beginContent('//layouts/main');
     <div class="span-4 clearfix">
 
         <?php $this->beginWidget('zii.widgets.CPortlet', array(
-            'title' => '在线客服',
+            'title' => '欢迎来访',
         ));
+        echo '<p>欢迎来自 '. Yii::app()->user->getVisitorCity(). ' 的访客。</p>';
         $this->widget('application.widgets.ContactUs.ContactUsWidget');
         $this->endWidget();
 

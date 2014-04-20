@@ -37,7 +37,7 @@ $assetsUrl = Yii::app()->assetManager->publish(Yii::app()->basePath.'/modules/pa
         <div id="mainmenu">
             <?php $this->widget('zii.widgets.CMenu', array(
                 'items' => array(
-                    array('label' => '网站首页', 'url' => array('site/index')),
+                    array('label' => '首页', 'url' => array('site/index')),
                     array('label' => '所有产品', 'url' => array('prod/index')),
                 ),
             )); ?>
