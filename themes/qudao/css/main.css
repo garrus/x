@@ -2,24 +2,22 @@ body
 {
 	margin: 0;
 	padding: 0;
-	color: #555;
-	font: normal 10pt Arial,Helvetica,sans-serif;
-	background: #EFEFEF;
+	color: #333;
+	font: normal 14px verdana, sans-serif;;
+	background: #eee;
 }
 
 #page
 {
-	margin-top: 5px;
-	margin-bottom: 5px;
 	background: white;
-	border: 1px solid #C9E0ED;
 }
 
 #header
 {
 	margin: 0;
 	padding: 0;
-	border-top: 3px solid #C9E0ED;
+    background: rgb(99, 153, 205);
+    color: white;
 }
 
 #content
@@ -43,19 +41,25 @@ body
 
 #logo
 {
-	padding: 10px 20px;
-	font-size: 200%;
+    vertical-align: bottom;
+    height: 60px;
+    padding: 20px 0;
+}
+#logo span {
+    position: relative;
+    top: 15px;
+    left: 60%;
+    font-size: 36px;
 }
 
 #mainmenu
 {
-	background:white url(bg.gif) repeat-x left top;
+	background: rgb(141, 186, 230);
 }
 
 #mainmenu ul
 {
 	padding:6px 20px 5px 20px;
-	margin:0px;
 }
 
 #mainmenu ul li
@@ -65,9 +69,9 @@ body
 
 #mainmenu ul li a
 {
-	color:#ffffff;
-	background-color:transparent;
-	font-size:12px;
+	color:rgb(32, 84, 133);
+	/*background-color:rgb(99, 153, 205);*/
+	font-size:14px;
 	font-weight:bold;
 	text-decoration:none;
 	padding:5px 8px;
@@ -75,10 +79,30 @@ body
 
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
-	color: #6399cd;
-	background-color:#EFF4FA;
-	text-decoration:none;
+	color: rgb(99, 153, 205);
+	background-color: rgb(32, 84, 133);
+	text-decoration: none;
 }
+
+#page-content {
+    min-height: 650px;
+    margin-top: 15px;
+    padding: 0 15px;
+}
+
+h1,h2,h3,h4,h5 {
+    color: rgb(165, 198, 230);
+    font-family: verdana, sans-serif;
+}
+
+a {
+    color: rgb(99, 153, 205);
+}
+a:hover,a:active {
+    background-color: rgb(166, 113, 37);
+    color: rgb(255, 197, 113);
+}
+
 
 div.flash-error, div.flash-notice, div.flash-success
 {
@@ -155,14 +179,18 @@ div.search-form
 
 .portlet
 {
-
+    border: 1px solid rgb(255, 223, 177);
+    margin-bottom: 20px;
+    border-top-width: 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .portlet-decoration
 {
 	padding: 3px 8px;
-	background: #B7D6E7;
-	border-left: 5px solid #6FACCF;
+	background: rgb(255, 197, 113);
+	/*border-left: 5px solid rgb(255, 223, 177);*/
 }
 
 .portlet-title
@@ -171,7 +199,7 @@ div.search-form
 	font-weight: bold;
 	padding: 0;
 	margin: 0;
-	color: #298dcd;
+	color: rgb(166, 113, 37);
 }
 
 .portlet-content
@@ -179,7 +207,6 @@ div.search-form
 	font-size:0.9em;
 	margin: 0 0 15px 0;
 	padding: 5px 8px;
-	background:#EFFDFF;
 }
 
 .portlet-content ul
@@ -227,3 +254,63 @@ div.search-form
 {
 	background: #80CFFF;
 }
+
+#prod-list li {
+    margin-bottom: 20px;
+    padding: 8px 12px;
+    border: 3px double rgb(255, 223, 177);
+    border-radius: 15px;
+}
+
+#prod-list li .title {
+    margin-bottom: 0.5em;
+}
+#prod-list li .title a:hover {
+    background-color: white !important;
+    color: rgb(99, 153, 205);
+    text-decoration: underline;
+}
+
+#prod-list li .title a {
+    text-decoration: none;
+}
+
+#prod-list li p {
+    margin-bottom: 0.5em;
+}
+#prod-list li p .info {
+    font-size: 13px;
+    line-height: 1.6em;
+    text-indent: 2em;
+    margin-bottom: 20px;
+}
+
+#prod-list li a.view-detail {
+    float: right;
+    font-size: 12px;
+    position: relative;
+    top: 2px;
+}
+
+
+.prod-name {
+    text-align: center;
+    margin: 15px auto;
+    font-weight: 900;
+    text-shadow: 1px 1px 5px #d0d0d0;
+}
+.prod-desc {
+    margin: 15px 20px;
+    padding: 10px 15px;
+    text-indent: 2em;
+    background-color: rgb(99, 153, 205);
+    border-radius: 10px;
+    color: white;
+    font-family: "黑体", sans-serif;
+    line-height: 24px;
+    font-size: 85%;
+}
+.prod-content {
+    text-indent: 2em;
+}
+

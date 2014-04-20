@@ -80,8 +80,15 @@ $config = array(
 			'urlFormat'=>'path',
             'showScriptName' => false,
 			'rules'=>array(
+                '<controller:.+>-<action:ueditor\.(post|view)>/<resource:.+>' => '<controller>/<action>',
 				'<view:.+>.shtml'=>'site/page',
-                '<controller:user|pic>/<extraPath:.+>'=>'<controller>/dispatch',
+                'home.html' => 'site/index',
+                'products.html' => 'prod/index',
+                'product-<id:\d+>.html' => 'prod/view',
+                'contact.html' => 'site/contact',
+
+                '<controller:.+>-<action:.+>-<id:\d+>' => '<controller>/<action>',
+                '<controller:.+>-<action:.+>' => '<controller>/<action>',
 			),
 		),
 

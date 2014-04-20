@@ -10,9 +10,10 @@
  * @property int $is_deleted
  * @property string $update_time
  * @property string $create_time
+ * @property string $content
+ * @property string $cate
  *
  * The followings are the available model relations:
- * @property User[] $users
  *
  * @method Product published
  * @method Product deleted
@@ -21,11 +22,6 @@ class Product extends CActiveRecord
 {
 
     /**
-     * @var CUploadedFile
-     */
-    public $file=null;
-
-	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -44,12 +40,14 @@ class Product extends CActiveRecord
 			array('name', 'required'),
 			array('name', 'length', 'max'=>128),
 			array('description', 'length', 'max'=>1024),
-            array('file', 'file', 'types' => 'html'),
+            array('cate', 'length', 'max' => 64),
+            array('content,is_deleted', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, description', 'safe', 'on'=>'search'),
 		);
 	}
+
 
 	/**
 	 * @return array relational rules.
@@ -59,7 +57,6 @@ class Product extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'users' => array(self::MANY_MANY, 'User', 'product_visit(product_id, customer_id)'),
 		);
 	}
 
@@ -74,30 +71,14 @@ class Product extends CActiveRecord
         );
     }
 
-    public function afterSave(){
-        if ($this->file) {
-            $this->file->saveAs($this->getHtmlPath());
-        }
+    public function getDescriptionInShort(){
+
+        return $this->description;
     }
 
-    public function getHtmlPath(){
-        return Yii::getPathOfAlias('application.data'). '/prod_html/'. $this->id. '.html';
-    }
-
-    public function getContent(){
-
-        $htmlPath = $this->getHtmlPath();
-        if (is_file($htmlPath)) {
-            $content = file_get_contents($htmlPath);
-            return str_replace(array('{name}', '{description}'), array($this->name, $this->description), $content);
-        } else {
-            return <<<HTML
-<h1>{$this->name}</h1>
-<p>{$this->description}</p>
-HTML;
-        }
-
-
+    protected function beforeSave(){
+        $this->update_time = new CDbExpression('CURRENT_TIMESTAMP');
+        return parent::beforeSave();
     }
 
 	/**
@@ -107,10 +88,13 @@ HTML;
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'description' => 'Description',
-            'is_deleted' => 'Is Deleted',
-            'file' => 'HTML File',
+			'name' => '名称',
+			'description' => '简介',
+            'cate' => '分类',
+            'is_deleted' => '隐藏',
+            'content' => '详情',
+            'create_time' => '创建时间',
+            'update_time' => '最近修改',
 		);
 	}
 
@@ -164,5 +148,27 @@ HTML;
     public function refreshUpdateTime(){
         $this->update_time = new CDbExpression('CURRENT_TIMESTAMP');
         $this->saveAttributes(array('update_time'));
+    }
+
+    public static function getList($includeDeleted=false){
+
+        $items = array();
+        $db = self::model()->getDbConnection();
+
+        $sql = $db->createCommand()
+            ->select('id,name,cate')
+            ->from(self::model()->tableName())
+            ->order('cate,name');
+        if (!$includeDeleted) {
+            $sql->where('is_deleted=0');
+        }
+
+        $list = $sql->queryAll(true);
+
+        foreach ($list as $row) {
+            $items[$row['cate']][] = array('id' => $row['id'], 'name' => $row['name']);
+        }
+        return $items;
+
     }
 }

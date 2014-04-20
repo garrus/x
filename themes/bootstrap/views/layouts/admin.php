@@ -29,17 +29,17 @@ $themeBaseUrl = Yii::app()->theme->baseUrl;
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!-- <a class="brand" href="#"><?php echo Yii::t('admin', 'Admin Dashboard');?></a> -->
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 
             <div class="container">
                 <div class="nav-collapse collapse">
                     <?php $this->widget('bootstrap.widgets.TbMenu', array(
                         'items' => array(
-                            array('label' => Yii::t('admin', 'Home'), 'url' => array('xa/index')),
-                            array('label' => Yii::t('admin', 'Production'), 'url' => array('xa/prodIndex'), 'active' => strpos($this->action->id, 'prod') === 0),
-                            array('label' => Yii::t('admin', 'Back to Site'), 'url' => array('site/index')),
-                            array('label' => Yii::t('admin', 'Logout'), 'url' => array('site/logout')),
+                            array('label' => '管理面板', 'url' => array('xa/index')),
+                            array('label' => '产品管理', 'url' => array('xa/prodIndex'), 'active' => strpos($this->action->id, 'prod') === 0),
+                            array('label' => '配置管理', 'url' => array('xa/configIndex'), 'active' => strpos($this->action->id, 'config') === 0),
+                            array('label' => '回到前台', 'url' => array('site/index')),
+                            array('label' => '安全登出', 'url' => array('site/logout')),
                         )
                     ));?>
                 </div><!--/.nav-collapse -->
@@ -50,7 +50,7 @@ $themeBaseUrl = Yii::app()->theme->baseUrl;
 
     <div class="container">
         <div class="content row-fluid">
-            <div class="span3">
+            <div class="span2">
                 <?php
                 $this->widget('TbMenu', array(
                     'type' => TbMenu::TYPE_LIST,
@@ -68,7 +68,7 @@ $themeBaseUrl = Yii::app()->theme->baseUrl;
 
         <hr>
         <div class="text-center footer">
-            Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+            Copyright &copy; <?php echo date('Y'); ?><br/>
             All Rights Reserved.<br/>
             <?php echo Yii::powered(); ?>
         </div><!-- footer -->

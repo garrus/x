@@ -4,6 +4,6 @@
  */
 $this->renderPartial('prod/_menu');?>
 
-    <h1>Update Product <?php echo $model->name; ?></h1>
-
+<h1>修改产品</h1>
+<hr>
 <?php echo $this->renderPartial('prod/_form',array('model'=>$model)); ?>

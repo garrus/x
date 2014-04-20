@@ -25,29 +25,34 @@ $assetsUrl = Yii::app()->assetManager->publish(Yii::app()->basePath.'/modules/pa
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
-<body style="background: white;">
+<body>
 
-<div>
+<div id="page" class="container">
 
-    <div class="container">
-        <div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+    <div id="header">
+        <div id="logo">
+            <span><?php echo CHtml::encode(Yii::app()->name); ?></span>
+        </div>
+
+        <div id="mainmenu">
+            <?php $this->widget('zii.widgets.CMenu', array(
+                'items' => array(
+                    array('label' => '网站首页', 'url' => array('site/index')),
+                    array('label' => '所有产品', 'url' => array('prod/index')),
+                ),
+            )); ?>
+        </div><!-- mainmenu -->
+
     </div><!-- header -->
 
-    <div id="mainmenu">
-        <?php $this->widget('zii.widgets.CMenu',array(
-            'items' => array(
-                array('label' => '网站首页', 'url' => array('site/index')),
-                array('label' => '所有产品', 'url' => array('prod/index')),
-                array('label' => '联系我们', 'url' => array('site/contact')),
-            ),
-        )); ?>
-    </div><!-- mainmenu -->
-
-    <div class="container" style="margin-bottom: 10px;">
-
+    <div id="page-content" class="clearfix">
         <?php echo $content; ?>
     </div>
+
     <div id="footer">
+        Copyright &copy; <?php echo date('Y'); ?><br/>
+        All Rights Reserved.<br/>
+        <?php echo Yii::powered(); ?>
     </div><!-- footer -->
 
 </div><!-- page -->

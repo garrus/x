@@ -4,12 +4,15 @@
 
 $this->pageTitle=Yii::app()->name . ' - Error';
 $this->breadcrumbs=array(
-	'Error',
+	'错误',
 );
 ?>
 
-<h2>Error <?php echo $code; ?></h2>
+<div style="margin: 20px;">
+<h2>出错了！<?php echo $code; ?></h2>
 
 <div class="error">
 <?php echo CHtml::encode($message); ?>
+</div>
+
 </div>

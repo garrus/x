@@ -18,6 +18,9 @@ class SiteController extends Controller
 			'page'=>array(
 				'class'=>'CViewAction',
 			),
+            'ueditor.' => array(
+                'class' => 'ext.wdueditor.WDueditor',
+            )
 		);
 	}
 
@@ -27,7 +30,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-        $this->layout = '//layouts/column3';
+        $this->layout = '//layouts/column2';
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('index');

@@ -11,8 +11,22 @@ class ProdListWidget extends CWidget{
 
     public function run(){
 
-        $prodCount = Product::model()->count();
-        echo '<h4>当前总共有 '. $prodCount. ' 件产品.</h4>';
+        $prodList = Product::getList();
+
+        $menuItems = array();
+        foreach ($prodList as $cate => $subList) {
+
+            $subItems = array();
+            foreach ($subList as $index => $prod) {
+                $subItems[] = array('label' => $prod['name'], 'url' => array('prod/view', 'id' => $prod['id']));
+            }
+            $menuItems[] = array('label' => $cate, 'items' => $subItems);
+        }
+
+
+        $this->widget('zii.widgets.CMenu', array(
+            'items' => $menuItems,
+        ));
     }
 
 } 

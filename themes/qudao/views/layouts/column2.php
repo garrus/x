@@ -9,18 +9,8 @@
  */
 $this->beginContent('//layouts/main');
 ?>
-    <div class="span-18" style="margin-top: 10px;">
 
-        <?php if (!empty($this->breadcrumbs)) {
-            $this->widget('zii.widgets.CBreadcrumbs', array(
-                'links' => $this->breadcrumbs,
-            ));
-        }?>
-
-        <?php echo $content;?>
-    </div>
-
-    <div class="span-6 clearfix">
+    <div class="span-4 clearfix">
 
         <?php $this->beginWidget('zii.widgets.CPortlet', array(
             'title' => '在线客服',
@@ -35,5 +25,18 @@ $this->beginContent('//layouts/main');
         $this->endWidget();
         ?>
     </div>
+
+    <div class="span-19" style="margin-right: 0;">
+
+        <?php if (!empty($this->breadcrumbs)) {
+            $this->widget('zii.widgets.CBreadcrumbs', array(
+                'homeLink' => CHtml::link('网站首页', array('site/index')),
+                'links' => $this->breadcrumbs,
+            ));
+        }?>
+
+        <?php echo $content;?>
+    </div>
+
 
 <?php $this->endContent();

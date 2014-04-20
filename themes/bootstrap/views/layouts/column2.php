@@ -1,7 +1,7 @@
 <?php /* @var $this Controller */ ?>
 <?php $this->beginContent('//layouts/main'); ?>
 <div class="content row-fluid">
-    <div class="span3">
+    <div class="span2">
         <?php
         $this->widget('TbMenu', array(
             'items'=>$this->menu,

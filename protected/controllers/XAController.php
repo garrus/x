@@ -45,11 +45,20 @@ class XAController extends Controller{
         );
     }
 
+    public function actions(){
+        return array(
+            'ueditor.' => array(
+                'class' => 'ext.wdueditor.WDueditor',
+            )
+        );
+    }
+
     public function init(){
         Yii::app()->theme = 'bootstrap';
         Yii::app()->user->loginUrl = array('xa/login');
         parent::init();
     }
+
 
     /**
      * Displays the login page
@@ -121,7 +130,6 @@ class XAController extends Controller{
         if(isset($_POST['Product']))
         {
             $model->attributes=$_POST['Product'];
-            $model->file = CUploadedFile::getInstance($model, 'file');
             if($model->save())
                 $this->redirect(array('prodView','id'=>$model->id));
         }
@@ -146,7 +154,6 @@ class XAController extends Controller{
         if(isset($_POST['Product']))
         {
             $model->attributes=$_POST['Product'];
-            $model->file = CUploadedFile::getInstance($model, 'file');
             if($model->save())
                 $this->redirect(array('prodView','id'=>$model->id));
         }
@@ -186,7 +193,7 @@ class XAController extends Controller{
     public function loadProd($id){
         $model = Product::model()->findByPk($id);
         if ($model===null)
-            throw new CHttpException(404,'The requested page does not exist.');
+            throw new CHttpException(404,'您所请求的页面不存在.');
         return $model;
     }
 
