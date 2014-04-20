@@ -45,5 +45,6 @@ echo CHtml::link('删除产品', array('xa/prodDelete', 'id' => $model->id), arr
 
 $this->widget('ext.wdueditor.WDueditor', array(
     'parse' => true,
+    'debug' => false,
     'id' => 'prod-content',
 ));

@@ -186,6 +186,12 @@ div.search-form
 
 .portlet a {
     color: rgb(32, 84, 133);
+
+    max-width: 100%;
+    display: inline-block;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .portlet a:hover, .portlet a:active{
     color: rgb(32, 84, 133);
@@ -325,4 +331,51 @@ div.search-form
 
 li.active {
     background: #A5c6e6;
+}
+
+#home-intro-block {
+    margin-top: 20px;
+}
+#home-intro-block-title {
+    margin-top: 21px;
+    border-bottom: 1px solid #A5c6e6;
+    border-left: 5px solid #A5c6e6;
+}
+
+.intro-block-row {
+    margin-bottom: 30px;
+}
+.intro-block {
+    display: inline-block;
+    width: 190px;
+    margin-right: 25px;
+    height: 120px;
+    background-color: rgb(32, 84, 133);
+    font-size: 13px;
+    color: #A5C6E6;
+    padding: 10px 20px 15px 20px;
+    border-top: 8px solid #FFC571;
+}
+
+.intro-block-row>.intro-block:last-child {
+    margin-right: 0;
+}
+
+.intro-block>.title {
+    font-size: 15px;
+    color: #6399CD;
+
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.intro-block>.info {
+    word-break: break-all;
+    word-wrap: break-word;
+    width: 100%;
+    max-height: 80px;
+    overflow: hidden;
+    margin-bottom: 0;
+    float: left;
 }

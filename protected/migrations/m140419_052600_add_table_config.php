@@ -17,6 +17,8 @@ class m140419_052600_add_table_config extends CDbMigration
             'adminSalt' => $salt,
             'adminPassword' => UserIdentity::encryptPassword($adminPassword, $salt),
             'contactQQCode' => '',
+            'prodGridRows' => 2,
+            'prodListPageSize' => 10,
         );
 
         foreach ($initConfig as $name => $value) {

@@ -29,10 +29,8 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
     $this->widget('ext.wdueditor.WDueditor',array(
         'model' => $model,
         'attribute' => 'content',
-        'htmlOptions' => array(
-            'style' => 'height: 800px;',
-        ),
-        'height' => '800px',
+        'height' => 400,
+        'debug' => false,
     ));?>
 
 <div class="form-actions">

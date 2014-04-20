@@ -128,16 +128,35 @@ class ConfigManager extends CApplicationComponent{
             }
         }
 
+        $this->filterNoneNumberItems($config);
+
         foreach ($config as $key => $value) {
             $this->setItem($key, $value);
         }
         $this->flush();
     }
 
+    private function filterNoneNumberItems(& $config){
+
+        $keys = array(
+            'prodListPageSize', 'prodGridRows',
+        );
+
+        foreach ($keys as $key) {
+            if (!is_numeric($config[$key]) && $config[$key] < 1) {
+                unset($config[$key]);
+                continue;
+            }
+            $config[$key] = intval($config[$key]);
+        }
+    }
+
     public function getLabels(){
         return array(
             'adminPassword' => '管理员密码',
             'contactQQCode' => '客服QQ代码',
+            'prodListPageSize' => '产品列表每页显示条目数',
+            'prodGridRows' => '首页最新产品区块行数',
         );
     }
 

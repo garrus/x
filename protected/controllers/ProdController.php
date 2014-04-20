@@ -33,14 +33,19 @@ class ProdController extends Controller{
     public function actionIndex(){
 
         $model = new Product('search');
+        $model->is_deleted = 0;
+        $dataProvider = $model->search();
+        $dataProvider->pagination->pageSize = Yii::app()->config->prodListPageSize;
+
         $this->render('index', array(
-            'dataProvider' => $model->search(),
+            'dataProvider' => $dataProvider,
         ));
 
     }
 
 
     public function actionView($id){
+
         $model = $this->loadModel($id);
         $this->render('view', array(
             'model' => $model

@@ -67,7 +67,7 @@ class WDueditor extends CInputWidget {
         /** @var CClientScript $cs */
         $cs = Yii::app()->clientScript;
 
-        $assets = $am->publish($baseDir.DIRECTORY_SEPARATOR.'ueditor', false, -1, true);
+        $assets = $am->publish($baseDir.DIRECTORY_SEPARATOR.'ueditor', false, -1, $this->debug);
 
         if ($this->parse) {
             $cs->registerScriptFile($assets.'/' . 'ueditor.parse.min.js');

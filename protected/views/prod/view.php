@@ -15,13 +15,12 @@ $this->breadcrumbs = array(
 
 ?>
 <h1 class="prod-name"><?php echo $model->name;?></h1>
-
 <p class="prod-desc"><?php echo $model->description;?></p>
-
 <div class="prod-content" id="prod-desc" style="margin-left: 20px;"><?php echo $model->content;?></div>
 
 <?php
 $this->widget('ext.wdueditor.WDueditor', array(
     'parse' => true,
+    'debug' => false,
     'id' => 'prod-desc',
 ));

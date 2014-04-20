@@ -35,9 +35,22 @@
     </div>
 
     <div class="control-group">
+        <label class="control-label" for="prod_grid_rows">首页最新产品显示行数</label>
         <div class="controls">
-            <button type="submit" class="btn btn-primary">保存</button>
+            <input type="number" min="1" name="prodGridRows" id="prod_grid_rows" value="<?php echo $items['prodGridRows'];?>">
         </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="prod_list_page_size">产品列表每页显示条目数</label>
+        <div class="controls">
+            <input type="number" min="1" name="prodListPageSize" id="prod_list_page_size" value="<?php echo $items['prodListPageSize'];?>">
+        </div>
+    </div>
+
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">保存</button>
     </div>
 
 </form>

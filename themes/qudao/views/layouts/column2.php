@@ -27,7 +27,7 @@ $this->beginContent('//layouts/main');
         ?>
     </div>
 
-    <div class="span-19" style="margin-right: 0;">
+    <div class="span-19" style="margin-right: 0; margin-left: 10px;">
 
         <?php if (!empty($this->breadcrumbs)) {
             $this->widget('zii.widgets.CBreadcrumbs', array(
