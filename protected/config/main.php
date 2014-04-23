@@ -10,6 +10,25 @@ date_default_timezone_set('Asia/Shanghai');
 
 Yii::setPathOfAlias('bootstrap', dirname(__DIR__).'/extensions/bootstrap');
 
+if (defined('SAE_MYSQL_USER')) { // SAE
+    $dbConfig = array(
+        'connectionString' => 'mysql:host='. SAE_MYSQL_HOST_M. ';port='. SAE_MYSQL_PORT. ';dbname='. SAE_MYSQL_DB,
+        'emulatePrepare' => true,
+        'username' => SAE_MYSQL_USER,
+        'password' => SAE_MYSQL_PASS,
+        'charset' => 'utf8',
+    );
+} else {
+    $dbConfig = array(
+        'connectionString' => 'mysql:host=localhost;dbname=db',
+        'emulatePrepare' => true,
+        'username' => 'root',
+        'password' => '',
+        'charset' => 'utf8',
+    );
+}
+
+
 $config = array(
 	'basePath'=>dirname(__DIR__),
 	'name'=>'水文仪器',
@@ -97,13 +116,7 @@ $config = array(
         // have it return an array that follows the  structure of this config
         // array exactly. Of course it doesn't have to contain all the index
         // that are in this file, but just the structure need to be followed.
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=db',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-		),
+		'db' => $dbConfig,
 
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
